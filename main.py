@@ -1,5 +1,6 @@
 import re
 
+
 def getIds(readFrom, writeTo):
   file1 = open(readFrom + ".txt", 'r')
   contents = file1.read()
@@ -14,13 +15,14 @@ def getIds(readFrom, writeTo):
     "Document", "Group", "Spread", "Group_1", "Group_2", "Group_3"
   ]
   foundIds = []
-  for i in range(len(idList)):
+  idListLen = len(idList)
+  for i in range(idListLen):
     item = idList[i]
     id = hyphenatedRegex.findall(item)[1]
     if (id not in disallowedIds):
       file2.write(id)
       foundIds.append(id)
-      if i < len(idList) - 1:
+      if i < idListLen - 1:
         file2.write('\n')
   file2.close()
   return foundIds
